@@ -16,26 +16,22 @@
  *
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+package co.travelguide.core.model.data
 
-rootProject.name = "TravelGuideAI"
+/**
+ * External data layer representation of a TravelGuide Place
+ */
+data class Place(
+    val country: String,
+    val city: String,
+    val region: Region,
+    val image: String
+)
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-include(":app")
-include(":core:network")
-include(":core:common")
-include(":core:model")
+enum class Region {
+    TODAS,
+    AMERICA,
+    ASIA,
+    EUROPA,
+    OCEANIA
+}

@@ -16,26 +16,19 @@
  *
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+package co.travelguide.core.network.di
 
-rootProject.name = "TravelGuideAI"
+import co.travelguide.core.network.TravelGuideNetworkDataSource
+import co.travelguide.core.network.retrofit.RetrofitTravelGuideNetwork
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-include(":app")
-include(":core:network")
-include(":core:common")
-include(":core:model")
+@Module
+@InstallIn(SingletonComponent::class)
+internal interface FlavoredNetworkModule {
+
+    @Binds
+    fun binds(impl: RetrofitTravelGuideNetwork): TravelGuideNetworkDataSource
+}

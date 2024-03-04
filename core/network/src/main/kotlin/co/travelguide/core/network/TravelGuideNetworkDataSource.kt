@@ -16,26 +16,13 @@
  *
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+package co.travelguide.core.network
 
-rootProject.name = "TravelGuideAI"
+import co.travelguide.core.network.model.NetworkPlace
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-include(":app")
-include(":core:network")
-include(":core:common")
-include(":core:model")
+/**
+ * Interface representing network calls to the TravelGuide backend
+ */
+interface TravelGuideNetworkDataSource {
+    suspend fun getPlaces(ids: List<String>? = null): List<NetworkPlace>
+}

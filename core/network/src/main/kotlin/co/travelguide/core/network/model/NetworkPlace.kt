@@ -16,26 +16,18 @@
  *
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+package co.travelguide.core.network.model
 
-rootProject.name = "TravelGuideAI"
+import kotlinx.serialization.Serializable
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-include(":app")
-include(":core:network")
-include(":core:common")
-include(":core:model")
+/**
+ * Network representation of [NetworkPlace]
+ */
+@Serializable
+data class NetworkPlace(
+    val id: Int,
+    val country: String,
+    val city: String,
+    val region: String,
+    val image: String
+)

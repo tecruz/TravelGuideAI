@@ -16,26 +16,16 @@
  *
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+package co.travelguide.core.network
 
-rootProject.name = "TravelGuideAI"
+import javax.inject.Qualifier
+import kotlin.annotation.AnnotationRetention.RUNTIME
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-include(":app")
-include(":core:network")
-include(":core:common")
-include(":core:model")
+@Qualifier
+@Retention(RUNTIME)
+annotation class Dispatcher(val travelGuideDispatcher: TravelGuideDispatchers)
+
+enum class TravelGuideDispatchers {
+    Default,
+    IO,
+}
